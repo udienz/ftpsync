@@ -138,9 +138,9 @@ cleanup() {
         fi
     fi
 
-    savelog "${LOGDIR}/rsync-${NAME}.log"
-    savelog "${LOGDIR}/rsync-${NAME}.error"
-    savelog "$LOG" > /dev/null
+    #savelog "${LOGDIR}/rsync-${NAME}.log"
+    #savelog "${LOGDIR}/rsync-${NAME}.error"
+    #savelog "$LOG" > /dev/null
 
     rm -f "${LOCK}"
 }
@@ -424,7 +424,8 @@ fi
 trap cleanup ERR TERM HUP INT QUIT
 
 # Start log by redirecting stdout and stderr there and closing stdin
-exec >"$LOG" 2>&1 <&-
+#exec >"$LOG" 2>&1 <&-
+exec >>"$LOG" 2>&1 <&-
 log "Mirrorsync start"
 
 # Look who pushed us and note that in the log.
